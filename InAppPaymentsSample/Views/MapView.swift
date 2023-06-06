@@ -10,17 +10,42 @@ import UIKit
 import MapKit
 import CoreLocation
 
-struct MapZone {
-    let name: String
-    let locations: [CLLocation]
-}
-
 class MapView : MKMapView {
     lazy var buyButton = ActionButton(backgroundColor: Color.primaryAction, title: "  Unlock", image: UIImage(named: "ic_cycle"))
 
     var isUnlockHidden: Bool = true {
         didSet {
             buyButton.isHidden = isUnlockHidden
+        }
+    }
+    
+    var cycleZones: [MapZone] = [] {
+        didSet {
+            self.annotations.forEach {
+                if !($0 is MKUserLocation) {
+                    self.removeAnnotation($0)
+                }
+            }
+            
+            for zone in cycleZones {
+                for location in zone.locations {
+                    let annotation = MapViewAnnotation()
+                    if #available(iOS 13.0, *) {
+                        annotation.image = UIImage(named: "ic_cycle")
+                    } else {
+                        // Fallback on earlier versions
+                    }
+                    annotation.coordinate = location.coordinate
+                    addAnnotation(annotation)
+                }
+                
+                if let location = zone.locations.first?.coordinate {
+                    zoomToCoordinates(location)
+                    
+                    let radius: CLLocationDistance = 55
+                    markCircleAround(location: location, radius: radius)
+                }
+            }
         }
     }
     
@@ -65,46 +90,10 @@ class MapView : MKMapView {
     }
 }
 
-class MapViewAnnotation: MKPointAnnotation {
-    var image: UIImage?
-}
-
 extension MapView {
-    /// Add annotation pins on map
-    /// - Parameter punch: Punch object
-    func showCycles(for zones: [MapZone]) {
-        
-        self.annotations.forEach {
-            if !($0 is MKUserLocation) {
-                self.removeAnnotation($0)
-            }
-        }
-        
-        for zone in zones {
-            for location in zone.locations {
-                let annotation = MapViewAnnotation()
-                if #available(iOS 13.0, *) {
-                    annotation.image = UIImage(named: "ic_cycle")
-                } else {
-                    // Fallback on earlier versions
-                }
-                annotation.coordinate = location.coordinate
-                addAnnotation(annotation)
-            }
-            
-            if let location = zone.locations.first?.coordinate {
-                zoomToCoordinates(location)
-                
-                let radius: CLLocationDistance = 55
-                markCircleAround(location: location, radius: radius)
-            }
-        }
-    
-    }
-    
     /// Zoom to coordinates
     /// - Parameter coordinate: CLLocationCoordinate2D
-    func zoomToCoordinates(_ coordinate: CLLocationCoordinate2D?) {
+    private func zoomToCoordinates(_ coordinate: CLLocationCoordinate2D?) {
         guard let coordinate = coordinate else {
             return
         }
@@ -117,7 +106,7 @@ extension MapView {
     /// - Parameters:
     ///   - location: location
     ///   - regionRadius: radius around location
-    func centerToLocation( _ location: CLLocation, regionRadius: CLLocationDistance = 200.0) {
+    private func centerToLocation( _ location: CLLocation, regionRadius: CLLocationDistance = 200.0) {
         let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, regionRadius, regionRadius)
         setRegion(coordinateRegion, animated: true)
     }
@@ -126,7 +115,7 @@ extension MapView {
     /// - Parameters:
     ///   - location: Location
     ///   - radius: Radius
-    func markCircleAround(location: CLLocationCoordinate2D, radius: CLLocationDistance) {
+    private func markCircleAround(location: CLLocationCoordinate2D, radius: CLLocationDistance) {
         let circle = MKCircle(center: location, radius: radius)
         add(circle)
     }

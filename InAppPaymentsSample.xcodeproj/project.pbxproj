@@ -26,6 +26,7 @@
 		72C92A162180C3D3006A02AF /* OrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72C92A152180C3D3006A02AF /* OrderViewController.swift */; };
 		72C92A182180C3FF006A02AF /* OrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72C92A172180C3FF006A02AF /* OrderView.swift */; };
 		E6882AA02A2EEA9A00632B9C /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6882A9F2A2EEA9A00632B9C /* MapView.swift */; };
+		E6882AA22A2F06E600632B9C /* MapViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6882AA12A2F06E600632B9C /* MapViewType.swift */; };
 		EC6913EBF1D8006AA26B7FB6 /* Pods_InAppPaymentsSample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53C31A54A62C6BEDE218BA60 /* Pods_InAppPaymentsSample.framework */; };
 /* End PBXBuildFile section */
 
@@ -69,6 +70,7 @@
 		9CBD217F62E5DBF3C04A1CCB /* Pods-InAppPaymentsSample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InAppPaymentsSample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-InAppPaymentsSample/Pods-InAppPaymentsSample.debug.xcconfig"; sourceTree = "<group>"; };
 		A82933F3919BDE3EA6308E84 /* Pods-InAppPaymentsSample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InAppPaymentsSample.release.xcconfig"; path = "Pods/Target Support Files/Pods-InAppPaymentsSample/Pods-InAppPaymentsSample.release.xcconfig"; sourceTree = "<group>"; };
 		E6882A9F2A2EEA9A00632B9C /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		E6882AA12A2F06E600632B9C /* MapViewType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -199,6 +201,7 @@
 				72C92A13217FDEF2006A02AF /* ExampleView.swift */,
 				72C92A172180C3FF006A02AF /* OrderView.swift */,
 				E6882A9F2A2EEA9A00632B9C /* MapView.swift */,
+				E6882AA12A2F06E600632B9C /* MapViewType.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -341,6 +344,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				72C92A162180C3D3006A02AF /* OrderViewController.swift in Sources */,
+				E6882AA22A2F06E600632B9C /* MapViewType.swift in Sources */,
 				2E46D2EC21B9AADC006CA233 /* HairlineView.swift in Sources */,
 				2E46D2E421B9A4BE006CA233 /* ActionButton.swift in Sources */,
 				2E46D2EA21B9AABB006CA233 /* extension-UIView.swift in Sources */,

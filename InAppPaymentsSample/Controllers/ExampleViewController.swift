@@ -29,11 +29,12 @@ class ExampleViewController: UIViewController {
 
     override func loadView() {
         // let cookieView = ExampleView()
-        let mapView = MapView()
+       
         let zone1 = MapZone(name: "Zone 1", locations: [CLLocation(latitude: 40.71701355913653, longitude: -73.99163790900535), CLLocation(latitude: 40.716710139874, longitude: -73.99183169860177)])
         let zone2 = MapZone(name: "Zone 2", locations: [CLLocation(latitude: 40.716139636754086, longitude: -73.99302159355997), CLLocation(latitude: 40.71575133607166, longitude: -73.9932147126042)])
-        mapView.showCycles(for: [zone1, zone2])
         
+        let mapView = MapView()
+        mapView.cycleZones = [zone1, zone2]
         self.view = mapView
         
         mapView.buyButton.addTarget(self, action: #selector(didTapBuyButton), for: .touchUpInside)
